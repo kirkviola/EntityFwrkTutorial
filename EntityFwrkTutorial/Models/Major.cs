@@ -20,5 +20,10 @@ namespace EntityFwrkTutorial.Models
 
         public virtual ICollection<MajorClass> MajorClasses { get; set; }
         public virtual ICollection<Student> Students { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id} | {Code} | {Description} | {MinSat}";
+        }
     }
 }
