@@ -2,12 +2,23 @@
 using EntityFwrkTutorial.Controllers;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EntityFwrkTutorial
 {
     class Program
     {
-        static void Main(string[] args)
+        async static Task Main()
+        {
+            var majsCtrl = new MajorsController();
+            var majors = await majsCtrl.GetAll();
+            majors.ForEach(m => Console.WriteLine(m));
+
+            var thisMajor = await majsCtrl.GetByPk(2);
+            
+        }
+
+        static void OtherOtherMethod()
         {
             var Matt = new Student()
             {
@@ -78,8 +89,8 @@ namespace EntityFwrkTutorial
                 var mController = new MajorsController();
                 var majList = mController.GetAll();
 
-                foreach (var maj in majList)
-                    Console.WriteLine(maj.Code);
+                //foreach (var maj in majList)
+                //    Console.WriteLine(maj.Code);
 
                 AddSeparator();
                 var major = mController.GetByPk(2);

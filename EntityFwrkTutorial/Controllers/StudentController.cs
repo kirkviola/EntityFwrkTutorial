@@ -55,6 +55,8 @@ namespace EntityFwrkTutorial.Controllers
 
             _context.Entry(student).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             var rowsAffected = _context.SaveChanges();
+            if (rowsAffected != 1)
+                throw new Exception("Update failed!");
             return true;
         }
 

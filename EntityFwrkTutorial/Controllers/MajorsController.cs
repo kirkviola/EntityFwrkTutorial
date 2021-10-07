@@ -1,4 +1,5 @@
 ﻿using EntityFwrkTutorial.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,21 @@ namespace EntityFwrkTutorial.Controllers
 {
     public class MajorsController
     {
-        private readonly EdDbContext _context;
-
+        private readonly EdDbContext _context; // readonly meaning cannot be set after creation
+        // Constructor to initialize the _context to interface with SQL
         public MajorsController()
         {
             this._context = new EdDbContext();
         }
 
-        public List<Major> GetAll()
+        public async Task<List<Major>> GetAll()
         {
-            return _context.Majors.ToList();
+            return await _context.Majors.ToListAsync();
         }
 
-        public Major GetByPk(int id)
+        public async Task<Major> GetByPk(int id)
         {
-            return  _context.Majors.Find(id);
+            return  await _context.Majors.FindAsync(id);
         }
 
         public Major GetByCode(string code)
